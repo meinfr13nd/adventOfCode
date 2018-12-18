@@ -8,17 +8,20 @@ public class day1Part2 extends AdventOfCode {
 private Integer frequency = 0;
 private HashSet<Integer> freqs = new HashSet<Integer>();
 
-public String getAnswer(String fileName) {
-        try {
-                ArrayList<Object> repeats = processFile(fileName);
-                while (repeats.size() == 0) {
-                        repeats = processFile(fileName);
+public day1Part2(String fileName) {
+        super(fileName);
+}
+
+public String getAnswer() {
+        while (this.lineOutput != null && this.lineOutput.size() == 0) {
+                try {
+                        this.lineOutput = this.processFile(this.inputFile);
+                } catch(Exception e) {
+                        e.printStackTrace();
+                        System.exit(1);
                 }
-                return repeats.get(0).toString();
-        } catch(Exception e) {
-                System.out.println(e.getMessage());
         }
-        return "unable to compute";
+        return this.lineOutput.get(0).toString();
 }
 
 protected Object processLine(String line) {

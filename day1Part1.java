@@ -8,14 +8,12 @@ public class day1Part1 extends AdventOfCode {
 private Integer frequency = 0;
 private HashSet<Integer> freqs = new HashSet<Integer>();
 
-public String getAnswer(String fileName) {
-        ArrayList<Object> lastFreq = null;
-        try {
-                lastFreq = processFile(fileName);
-        } catch(Exception e) {
-                System.out.println(e.getMessage());
-        }
-        return lastFreq.get(lastFreq.size()-1).toString();
+public day1Part1(String fileName) {
+        super(fileName);
+}
+
+public String getAnswer() {
+        return this.lineOutput.get(this.lineOutput.size()-1).toString();
 }
 
 protected Object processLine(String line) {

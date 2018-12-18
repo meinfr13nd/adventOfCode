@@ -5,6 +5,13 @@ import java.io.IOException;
 import java.util.function.Function;
 
 public abstract class AdventOfCode {
+protected ArrayList<Object> lineOutput = null;
+protected String inputFile;
+
+public AdventOfCode(String fileName) {
+        this.inputFile = fileName;
+}
+
 protected ArrayList<Object> processFile(String fileName) throws IOException {
         ArrayList<Object> lines = new ArrayList<Object>();
         BufferedReader br = new BufferedReader(new FileReader(fileName));
@@ -17,8 +24,17 @@ protected ArrayList<Object> processFile(String fileName) throws IOException {
         return lines;
 }
 
+public void printAnswer() {
+        try {
+                this.lineOutput = this.processFile(this.inputFile);
+        } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+        }
+        System.out.println(this.getAnswer());
+}
+
 protected abstract Object processLine(String line);
 
-public abstract String getAnswer(String fileName);
-
+protected abstract String getAnswer();
 }
