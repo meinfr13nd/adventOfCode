@@ -57,15 +57,15 @@ public static void main(String[] args) {
                         break;
                 }
                 break;
-        // case 5: switch (part) {
-        //         case 1:
-        //                 code = new day5Part1(fileName);
-        //                 break;
-        //         case 2:
-        //                 code = new day5Part2(fileName);
-        //                 break;
-        // }
-        //         break;
+        case 5: switch (part) {
+                case 1:
+                        code = new day5Part1(fileName);
+                        break;
+                case 2:
+                        code = new day5Part2(fileName);
+                        break;
+        }
+                break;
         // case 6:  switch (part) {
         //         case 1:
         //                 code = new day6Part1(fileName);
