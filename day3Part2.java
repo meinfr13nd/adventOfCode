@@ -3,13 +3,14 @@ import java.io.FileReader;
 import java.util.HashSet;
 import java.util.ArrayList;
 
-public class day3Part2 {
+public class day3Part2 extends AdventOfCode {
+private HashSet<String> claims = new HashSet<String>();
+private HashSet<String> overlapping = new HashSet<String>();
 
-private static String processFile(String fileName) {
-        HashSet<String> claims = new HashSet<String>();
-        HashSet<String> overlapping = new HashSet<String>();
-        try(BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-                for(String line; (line = br.readLine()) != null;) {
+
+private static String processLine(String fileName) {
+
+
                         String[] splitOnSpaces = line.split("\\s+");
                         String[] splitOnCommas = splitOnSpaces[2].split(",");
                         String[] splitOnXs = splitOnSpaces[3].split("x");
@@ -66,6 +67,6 @@ private static String processFile(String fileName) {
 
 
 public static void main(String[] args) {
-        System.out.println(processFile(args[0]));
+        ArrayList<Object> lines = processFile(args[0]);
 }
 }
