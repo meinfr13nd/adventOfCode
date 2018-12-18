@@ -9,11 +9,16 @@ protected ArrayList<Object> processFile(String fileName) throws IOException {
         ArrayList<Object> lines = new ArrayList<Object>();
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         for(String line; (line = br.readLine()) != null;) {
-                lines.add(processLine(line));
+                Object result = processLine(line);
+                if (result != null) {
+                        lines.add(result);
+                }
         }
         return lines;
 }
 
-abstract Object processLine(String line);
+protected abstract Object processLine(String line);
+
+public abstract String getAnswer(String fileName);
 
 }

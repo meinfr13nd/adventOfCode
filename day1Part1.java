@@ -4,21 +4,18 @@ import java.util.HashSet;
 import java.util.ArrayList;
 
 
-public class day1Part2 extends AdventOfCode {
+public class day1Part1 extends AdventOfCode {
 private Integer frequency = 0;
 private HashSet<Integer> freqs = new HashSet<Integer>();
 
 public String getAnswer(String fileName) {
+        ArrayList<Object> lastFreq = null;
         try {
-                ArrayList<Object> repeats = processFile(fileName);
-                while (repeats.size() == 0) {
-                        repeats = processFile(fileName);
-                }
-                return repeats.get(0).toString();
+                lastFreq = processFile(fileName);
         } catch(Exception e) {
                 System.out.println(e.getMessage());
         }
-        return "unable to compute";
+        return lastFreq.get(lastFreq.size()-1).toString();
 }
 
 protected Object processLine(String line) {
@@ -27,11 +24,6 @@ protected Object processLine(String line) {
         } else {
                 frequency += Integer.parseInt(line.substring(1));
         }
-        int size = freqs.size();
-        freqs.add(frequency);
-        if (size == freqs.size()) {
-                return frequency;
-        }
-        return null;
+        return frequency;
 }
 }
