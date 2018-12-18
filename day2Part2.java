@@ -3,47 +3,43 @@ import java.io.FileReader;
 import java.util.HashSet;
 import java.util.ArrayList;
 
-public class day2Part2 {
+public class day2Part2 extends AdventOfCode {
+private Integer frequency = 0;
+private Integer hasTwo = 0;
+private Integer hasThree = 0;
+private HashSet<String> pos = new HashSet<String>();
 
-private static String processFile(String fileName) {
-        int frequency = 0;
-        int hasTwo = 0;
-        int hasThree = 0;
-        HashSet<String> pos = new HashSet<String>();
-        try(BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-                for(String line; (line = br.readLine()) != null; ) {
-                        for(String str: pos) {
-                                int diffs = 0;
-                                for (int i = 0; i < str.length(); i++) {
-                                        if (str.charAt(i) != line.charAt(i)) {
-                                                diffs += 1;
-                                        }
-                                        if (diffs > 1) {
-                                                break;
-                                        }
-                                }
-                                if (diffs == 1) {
-                                        ArrayList<String> toReturn = new ArrayList<String>();
-                                        for (int i = 0; i < str.length(); i++) {
-                                                if (str.charAt(i) == line.charAt(i)) {
-                                                        toReturn.add(String.valueOf(str.charAt(i)));
-                                                }
-                                        }
-                                        return String.join("", toReturn);
+public day2Part2(String fileName) {
+        super(fileName);
+}
+
+protected String getAnswer() {
+        return this.lineOutput.get(0).toString();
+}
+
+protected Object processLine(String line) {
+        for(String str: pos) {
+                int diffs = 0;
+                for (int i = 0; i < str.length(); i++) {
+                        if (str.charAt(i) != line.charAt(i)) {
+                                diffs += 1;
+                        }
+                        if (diffs > 1) {
+                                break;
+                        }
+                }
+                if (diffs == 1) {
+                        ArrayList<String> toReturn = new ArrayList<String>();
+                        for (int i = 0; i < str.length(); i++) {
+                                if (str.charAt(i) == line.charAt(i)) {
+                                        toReturn.add(String.valueOf(str.charAt(i)));
                                 }
                         }
-                        pos.add(line);
+                        return String.join("", toReturn);
                 }
-        } catch (Exception e) {
-                System.out.println(e.getMessage());
-                System.exit(1);
         }
-        return "";
+        pos.add(line);
+        return null;
 }
 
-
-
-public static void main(String[] args) {
-        System.out.println(processFile(args[0]));
-}
 }
