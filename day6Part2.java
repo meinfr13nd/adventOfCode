@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.awt.Point;
-import java.util.stream.Stream;
 
 public class day6Part2 extends AdventOfCode {
 
