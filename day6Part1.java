@@ -10,12 +10,12 @@ import java.awt.Point;
 public class day6Part1 extends AdventOfCode {
 //3223
 
-ArrayList<Point> pts = new ArrayList<Point>();
-int minX = Integer.MAX_VALUE;
-int maxX = Integer.MIN_VALUE;
-int minY = Integer.MAX_VALUE;
-int maxY = Integer.MIN_VALUE;
-HashMap<Point, Integer> closestTo = new HashMap<Point, Integer>();
+private ArrayList<Point> pts = new ArrayList<Point>();
+private int minX = Integer.MAX_VALUE;
+private int maxX = Integer.MIN_VALUE;
+private int minY = Integer.MAX_VALUE;
+private int maxY = Integer.MIN_VALUE;
+private HashMap<Point, Integer> closestTo = new HashMap<Point, Integer>();
 
 public day6Part1(String fileName) {
         super(fileName);
