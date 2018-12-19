@@ -66,10 +66,12 @@ public static void main(String[] args) {
                         break;
         }
                 break;
-        // case 6:  switch (part) {
-        //         case 1:
-        //                 code = new day6Part1(fileName);
-        //                 break;
+        case 6:  switch (part) {
+                case 1:
+                        code = new day6Part1(fileName);
+                        break;
+        }
+                break;
         //         case 2:
         //                 code = new day6Part2(fileName);
         //                 break;
