@@ -7,7 +7,7 @@ public Color(String id, int numColored) {
 }
 
 public boolean equals(Color c) {
-        return this.id.equals(c.getID());
+        return !(c == null) && this.id.equals(c.getID());
 }
 
 public String getID() {
