@@ -70,13 +70,11 @@ public static void main(String[] args) {
                 case 1:
                         code = new day6Part1(fileName);
                         break;
+                case 2:
+                        code = new day6Part2(fileName);
+                        break;
         }
                 break;
-        //         case 2:
-        //                 code = new day6Part2(fileName);
-        //                 break;
-        // }
-        //         break;
         default: code = null;
                 break;
         }
