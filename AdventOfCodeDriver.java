@@ -75,11 +75,29 @@ public static void main(String[] args) {
                         break;
         }
                 break;
+        case 7:  switch (part) {
+                case 1:
+                        code = new day7Part1(fileName);
+                        break;
+                case 2:
+                        code = new day7Part2(fileName);
+                        break;
+        }
+                break;
+        case 8:  switch (part) {
+                case 1:
+                        code = new day8Part1(fileName);
+                        break;
+                case 2:
+                        code = new day8Part2(fileName);
+                        break;
+        }
+                break;
         default: code = null;
                 break;
         }
         if (code == null) {
-                System.out.println("Correct usage:\njava AdventOfCodeDriver DayNumber PartNumber InputFile");
+                System.out.println("Specify a valid day and part number");
                 System.exit(1);
         }
         code.printAnswer();
