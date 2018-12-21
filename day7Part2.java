@@ -80,16 +80,6 @@ public boolean equals(Object obj) {
 }
 
 private String drawGraph() {
-        Integer timeTaken = 0;
-        int seconds = 0;
-        HashMap<Integer, Integer> workerToUntilAble = new HashMap<Integer, Integer>();
-        HashMap<Integer, Node> workerToNode = new HashMap<Integer, Node>();
-        workerToUntilAble.put(5, 0);
-        workerToUntilAble.put(1, 0);
-        workerToUntilAble.put(2, 0);
-        workerToUntilAble.put(3, 0);
-        workerToUntilAble.put(4, 0);
-        int asciiCapitalOffset = 64;
         ArrayList<Node> sortedElements = new ArrayList<Node>(); // Empty list that will contain the sorted elements
         HashSet<Node> noIncomingEdges = new HashSet<Node>(); // Set of all nodes with no incoming edges
         for(String s : keyToNode.keySet()) {
@@ -100,61 +90,26 @@ private String drawGraph() {
         }
         //while S is non-empty do
         while(!noIncomingEdges.isEmpty()) {
-                System.out.println(workerToUntilAble);
-                if (workerToUntilAble.containsValue(0)) {
-                        ArrayList<Node> sortedNexts = new ArrayList<Node>(new TreeSet<Node>(noIncomingEdges));
-                        for (Node n: sortedNexts) {
-                                noIncomingEdges.remove(n);
-                                sortedElements.add(n);
-                                while (workerToNode.size() == 5) {
-                                        seconds += 1;
-                                        for (Integer id : workerToUntilAble.keySet()) {
-                                                workerToUntilAble.put(id, workerToUntilAble.get(id) - 1);
+                ArrayList<Node> sortedNexts = new ArrayList<Node>(new TreeSet<Node>(noIncomingEdges));
+                Node n = sortedNexts.get(0);
+                noIncomingEdges.remove(n);
+                sortedElements.add(n);
+                for(Iterator<Edge> it = n.outEdges.iterator(); it.hasNext();) { //for each node m with an edge e from n to m do
+                        //remove edge e from the graph
+                        Edge e = it.next(); //remove edge e from the graph
+                        Node m = e.to;
+                        it.remove();        //Remove edge from n
+                        m.inEdges.remove(e);        //Remove edge from m
 
-                                        }
-                                        if (workerToUntilAble.containsValue(0)) {
-                                                Integer worker = null;
-                                                for (Integer w: workerToUntilAble.keySet()) {
-                                                        if (workerToUntilAble.get(w) == 0) {
-                                                                worker = w;
-                                                                break;
-                                                        }
-                                                }
-                                                removeNode(workerToNode.get(worker), noIncomingEdges);
-                                                workerToNode.remove(worker);
-                                        }
-                                }
-                                for (Integer id : workerToUntilAble.keySet()) {
-                                        if (workerToUntilAble.get(id) == 0) {
-                                                workerToUntilAble.put(id, (int)(n.getKey().charAt(0)) - asciiCapitalOffset + 60);
-                                                break;
-                                        }
-                                }
+                        if(m.inEdges.isEmpty()) { //if m has no other incoming edges then insert m into S
+                                noIncomingEdges.add(m);
                         }
                 }
-                seconds += 1;
         }
-        timeTaken += seconds;
         String order = "";
         for (Node n : sortedElements) {
                 order += n.getKey();
         }
-        System.out.println(timeTaken);
         return order;
 }
-
-private void removeNode(Node n, HashSet<Node> noIncomingEdges) {
-        for(Iterator<Edge> it = n.outEdges.iterator(); it.hasNext();) { //for each node m with an edge e from n to m do
-                //remove edge e from the graph
-                Edge e = it.next(); //remove edge e from the graph
-                Node m = e.to;
-                it.remove(); //Remove edge from n
-                m.inEdges.remove(e); //Remove edge from m
-
-                if(m.inEdges.isEmpty()) { //if m has no other incoming edges then insert m into S
-                        noIncomingEdges.add(m);
-                }
-        }
-}
-
 }
